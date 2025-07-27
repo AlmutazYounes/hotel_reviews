@@ -309,47 +309,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub: [@AlmutazYounes](https://github.com/AlmutazYounes)
 - Email: almutaz.younes@example.com
 
-## 🙏 Acknowledgments
+## 📄 License
 
-- **BERT Model**: Google Research for the multilingual BERT model
-- **SimpleTransformers**: Thilina Rajapakse for the excellent library
-- **Flask**: Pallets team for the web framework
-- **Arabic NLP Community**: For research and datasets
-- **Open Source Contributors**: Everyone who contributed to the dependencies
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
+## 👨‍💻 Author
 
-If you encounter any issues or have questions:
-
-1. **Check Issues**: Look at existing [Issues](https://github.com/AlmutazYounes/hotel_reviews/issues)
-2. **Create Issue**: Open a new issue with detailed description
-3. **Contact**: Reach out to the author directly
-
-## 🔮 Future Enhancements
-
-- [ ] Sentiment polarity analysis for each aspect
-- [ ] Support for more languages
-- [ ] Real-time model fine-tuning
-- [ ] Advanced visualization dashboard
-- [ ] Mobile app development
-- [ ] Integration with hotel booking platforms
-
-## ✅ Current Status
-
-**🎉 PROJECT STATUS: PRODUCTION READY**
-
-- ✅ Model trained and tested (84% F1 score)
-- ✅ Web interface fully functional
-- ✅ Single sentence analysis working
-- ✅ File upload analysis working
-- ✅ Clean, responsive design
-- ✅ No JavaScript errors
-- ✅ Proper error handling
-- ✅ Comprehensive documentation
-- ✅ Deployment guide included
+**Almutaz Younes**
+- GitHub: [@AlmutazYounes](https://github.com/AlmutazYounes)
 
 ---
 
-**⭐ Star this repository if you find it useful!**
-
-**📧 For questions and support, please open an issue or contact the author.** 
+**⭐ Star this repository if you find it useful!** 
