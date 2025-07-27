@@ -136,6 +136,15 @@ dmypy.json
 *.model
 *.bin
 
+# Training artifacts and cache
+runs/
+cache_dir/
+wandb/
+logs/
+checkpoints/
+*.ckpt
+*.safetensors
+
 # TensorFlow
 *.ckpt
 *.pb
@@ -163,6 +172,9 @@ dmypy.json
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Model files (should be trained locally)
+hotel_reviews_model/
 
 # Logs
 *.log
