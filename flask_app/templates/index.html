@@ -72,9 +72,12 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .upload-section {
@@ -125,9 +128,16 @@
             border: 2px dashed rgba(255,255,255,0.3);
         }
 
-        .file-upload-label:hover {
-            background: linear-gradient(45deg, #2980b9, var(--secondary-color));
-            transform: scale(1.02);
+        .file-upload-label {
+            display: block;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(45deg, var(--secondary-color), #2980b9);
+            color: white;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px dashed rgba(255,255,255,0.3);
         }
 
         .submit-btn {
@@ -143,10 +153,17 @@
             box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.4);
-            background: linear-gradient(45deg, #2ecc71, var(--success-color));
+        .submit-btn {
+            background: linear-gradient(45deg, var(--success-color), #2ecc71);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
         }
 
         .features-section {
@@ -236,9 +253,16 @@
             transition: all 0.3s ease;
         }
 
-        .aspect-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        .aspect-tag {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary-color), #2980b9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
         }
 
         .footer {
@@ -265,9 +289,15 @@
             transition: all 0.3s ease;
         }
 
-        .nav-tabs .nav-link:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
+        .nav-tabs .nav-link {
+            border: none;
+            border-radius: 15px;
+            margin: 0 0.5rem;
+            padding: 1rem 2rem;
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.3);
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         .nav-tabs .nav-link.active {
@@ -356,11 +386,30 @@
                                     <textarea class="form-control" id="sentenceInput" rows="3" 
                                               placeholder="مثال: الفندق رائع والخدمة ممتازة والغرف نظيفة" required></textarea>
                                 </div>
-                                <button type="submit" class="submit-btn">
+                                <button type="button" class="submit-btn" id="analyzeSentenceBtn">
                                     <i class="fas fa-magic me-2"></i>
                                     تحليل الجملة
                                 </button>
                             </form>
+                            
+                            <!-- Results for single sentence - appears directly under the form -->
+                            <div id="sentenceResults" class="mt-4" style="display: none;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 class="mb-2"><i class="fas fa-comment"></i> الجملة المحللة:</h6>
+                                        <p id="analyzedSentence" class="mb-3"></p>
+                                        <div class="mb-2">
+                                            <strong>الجوانب المحددة:</strong>
+                                        </div>
+                                        <div id="sentenceAspects"></div>
+                                        <div class="mt-2">
+                                            <small class="text-muted">
+                                                عدد الجوانب: <span id="aspectsCount">0</span>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- File Upload Tab -->
@@ -484,6 +533,87 @@
             }
         });
 
+        // Clear results when switching tabs
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function() {
+                document.getElementById('sentenceResults').style.display = 'none';
+                document.getElementById('resultsSection').style.display = 'none';
+            });
+        });
+
+        // Clear sentence results when typing new text
+        document.getElementById('sentenceInput').addEventListener('input', function() {
+            document.getElementById('sentenceResults').style.display = 'none';
+        });
+
+        // Simple test to verify button exists
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const btn = document.getElementById('analyzeSentenceBtn');
+            console.log('Button found:', btn);
+            if (btn) {
+                console.log('Button text:', btn.textContent);
+            }
+        });
+
+        // Button click handler for sentence analysis
+        document.addEventListener('DOMContentLoaded', function() {
+            const analyzeBtn = document.getElementById('analyzeSentenceBtn');
+            if (analyzeBtn) {
+                analyzeBtn.addEventListener('click', function() {
+                    console.log('Button clicked!'); // Debug log
+                    
+                    const sentence = document.getElementById('sentenceInput').value.trim();
+                    
+                    if (!sentence) {
+                        alert('يرجى إدخال جملة للتحليل');
+                        return;
+                    }
+
+                    console.log('Analyzing sentence:', sentence); // Debug log
+
+                    // Show loading
+                    document.getElementById('loading').style.display = 'block';
+                    document.querySelectorAll('.submit-btn').forEach(btn => btn.disabled = true);
+
+                    // Submit sentence using AJAX
+                    fetch('/analyze_sentence', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify({ sentence: sentence })
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status); // Debug log
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Received data:', data); // Debug log
+                        
+                        // Hide loading
+                        document.getElementById('loading').style.display = 'none';
+                        document.querySelectorAll('.submit-btn').forEach(btn => btn.disabled = false);
+
+                        // Show results
+                        displayResults(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('loading').style.display = 'none';
+                        document.querySelectorAll('.submit-btn').forEach(btn => btn.disabled = false);
+                        alert('حدث خطأ أثناء تحليل الجملة: ' + error.message);
+                    });
+                });
+            } else {
+                console.error('Button not found!'); // Debug log
+            }
+        });
+
         // Single sentence form submission
         document.getElementById('sentenceForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -499,7 +629,7 @@
             document.getElementById('loading').style.display = 'block';
             document.querySelectorAll('.submit-btn').forEach(btn => btn.disabled = true);
 
-            // Submit sentence
+            // Submit sentence using AJAX
             fetch('/analyze_sentence', {
                 method: 'POST',
                 headers: {
@@ -508,7 +638,12 @@
                 },
                 body: JSON.stringify({ sentence: sentence })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Hide loading
                 document.getElementById('loading').style.display = 'none';
@@ -521,8 +656,11 @@
                 console.error('Error:', error);
                 document.getElementById('loading').style.display = 'none';
                 document.querySelectorAll('.submit-btn').forEach(btn => btn.disabled = false);
-                alert('حدث خطأ أثناء تحليل الجملة');
+                alert('حدث خطأ أثناء تحليل الجملة: ' + error.message);
             });
+            
+            // Prevent form from submitting normally
+            return false;
         });
 
         // File upload form submission
@@ -564,37 +702,36 @@
         });
 
         function displayResults(data) {
+            // Handle single sentence result - show directly under the form
+            if (data.sentence && data.aspects) {
+                const sentenceResults = document.getElementById('sentenceResults');
+                const analyzedSentence = document.getElementById('analyzedSentence');
+                const sentenceAspects = document.getElementById('sentenceAspects');
+                const aspectsCount = document.getElementById('aspectsCount');
+                
+                // Update the content
+                analyzedSentence.textContent = data.sentence;
+                sentenceAspects.innerHTML = data.aspects.map(aspect => 
+                    `<span class="aspect-tag">${aspect}</span>`
+                ).join('');
+                aspectsCount.textContent = data.aspects.length;
+                
+                // Show the results
+                sentenceResults.style.display = 'block';
+                
+                // Scroll to results
+                sentenceResults.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            // Handle file results - show in the main results section
             const resultsSection = document.getElementById('resultsSection');
             const resultsContent = document.getElementById('resultsContent');
             
             let html = '<div class="row">';
             
-            // Handle single sentence result
-            if (data.sentence && data.aspects) {
-                html += `
-                    <div class="col-12 mb-3">
-                        <div class="result-card">
-                            <h6 class="mb-2"><i class="fas fa-comment"></i> الجملة المحللة:</h6>
-                            <p class="mb-3">${data.sentence}</p>
-                            <div class="mb-2">
-                                <strong>الجوانب المحددة:</strong>
-                            </div>
-                            <div>
-                                ${data.aspects.map(aspect => 
-                                    `<span class="aspect-tag">${aspect}</span>`
-                                ).join('')}
-                            </div>
-                            <div class="mt-2">
-                                <small class="text-muted">
-                                    عدد الجوانب: ${data.aspects.length}
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
             // Handle file results
-            else if (data.sentences && data.predictions) {
+            if (data.sentences && data.predictions) {
                 data.sentences.forEach((sentence, index) => {
                     const prediction = data.predictions[index];
                     const aspects = extractAspects(prediction);
