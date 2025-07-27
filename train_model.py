@@ -64,7 +64,7 @@ if __name__ == '__main__':
     print("Test data shape:", test_df.shape)
     
     # Initialize model
-    aspect_model = NERModel("bert", "bert-base-multilingual-cased",
+    aspect_model = NERModel("bert", "MutazYoune/Ara_DialectBERT",
                             labels=["B-A", "I-A", "O"],
                             args={"save_eval_checkpoints": False, 
                                   "save_steps": -1, 

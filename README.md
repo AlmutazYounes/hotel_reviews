@@ -2,23 +2,45 @@
 
 A sophisticated system for analyzing Arabic hotel reviews using Aspect-Based Sentiment Analysis (ABSA) with BERT-based Named Entity Recognition (NER). This project provides both a web interface and API for extracting aspects from hotel reviews.
 
+**🎓 This work is part of a Master's Thesis in Natural Language Processing**
+
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-2.3+-green.svg)
 ![BERT](https://img.shields.io/badge/BERT-Multilingual-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)
+![Thesis](https://img.shields.io/badge/Thesis-Master's%20Degree-purple.svg)
+
+## 📚 Research Context
+
+This project implements the research findings from a Master's thesis focused on **Arabic Dialect Processing and Aspect-Based Sentiment Analysis**. The work explores:
+
+- **Arabic Dialect Understanding**: Processing and analyzing Arabic dialectal text
+- **Custom BERT Model**: Development of `MutazYoune/Ara_DialectBERT` for Arabic dialect processing
+- **Aspect Extraction**: Named Entity Recognition for identifying hotel review aspects
+- **Sentiment Analysis**: Understanding customer sentiment about specific hotel features
+
+### 🧠 Custom Model: Ara_DialectBERT
+
+The project utilizes a custom-trained BERT model specifically designed for Arabic dialect processing:
+
+- **Model**: `MutazYoune/Ara_DialectBERT`
+- **Purpose**: Optimized for Arabic dialect understanding and processing
+- **Training**: Custom-trained on Arabic dialectal text data
+- **Performance**: Achieves 84% F1 score on Arabic hotel reviews
 
 ## 🌟 Features
 
 - **🎯 High Accuracy**: Achieves 84% F1 score on Arabic hotel reviews
 - **🌍 Arabic Language Support**: Optimized for Arabic text processing
-- **🤖 BERT-based Model**: Uses `bert-base-multilingual-cased` for robust aspect extraction
+- **🤖 Custom BERT Model**: Uses `MutazYoune/Ara_DialectBERT` for robust aspect extraction
 - **💻 Web Interface**: Beautiful, responsive web application
 - **📱 Mobile Friendly**: Works seamlessly on all devices
 - **🔌 API Support**: RESTful API for integration
 - **📊 Real-time Analysis**: Instant results with loading animations
 - **🎨 Modern UI**: Clean design with Arabic RTL support
 - **✅ Production Ready**: Fully tested and deployed
+- **🎓 Research-Based**: Built on solid academic research foundation
 
 ## 🏗️ Architecture
 
@@ -317,7 +339,28 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Almutaz Younes**
 - GitHub: [@AlmutazYounes](https://github.com/AlmutazYounes)
+- **Custom Model**: [MutazYoune/Ara_DialectBERT](https://huggingface.co/MutazYoune/Ara_DialectBERT)
+
+## 📖 Academic Work
+
+This project is based on research conducted for a **Master's Thesis in Natural Language Processing**. The work contributes to the field of Arabic NLP by:
+
+- Developing a custom BERT model for Arabic dialect processing
+- Implementing aspect-based sentiment analysis for Arabic hotel reviews
+- Creating a practical web application for real-world use
+- Advancing the understanding of Arabic dialectal text processing
+
+### 🎓 Thesis Details
+
+- **Title**: Arabic Dialect Processing and Aspect-Based Sentiment Analysis
+- **Institution**: [Your University Name]
+- **Field**: Natural Language Processing
+- **Focus**: Arabic Dialect Understanding and Sentiment Analysis
+- **Model**: Custom-trained Ara_DialectBERT for Arabic dialect processing
+- **Thesis**: [JUST_Thesis_Mutaz_For_publishing.pdf](JUST_Thesis_Mutaz_For_publishing.pdf) - Complete thesis document
 
 ---
 
-**⭐ Star this repository if you find it useful!** 
+**⭐ Star this repository if you find it useful!**
+
+**📚 This work represents significant research in Arabic NLP and sentiment analysis.** 

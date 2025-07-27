@@ -9,7 +9,7 @@ import pandas as pd
 from simpletransformers.ner import NERModel
 
 def load_model():
-    """Load the trained model."""
+    """Load the trained model (based on custom Ara_DialectBERT)."""
     current_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(current_dir, "hotel_reviews_model")
     
@@ -17,7 +17,7 @@ def load_model():
         print("Error: Model not found. Please train the model first using train_model.py")
         return None
     
-    print("Loading model...")
+    print("Loading model (trained on MutazYoune/Ara_DialectBERT)...")
     model = NERModel("bert", model_path, use_cuda=False,
                      labels=["B-A", "I-A", "O"],
                      args={"use_cuda": False,
